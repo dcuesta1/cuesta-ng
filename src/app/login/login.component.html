@@ -1,0 +1,19 @@
+<div class="card" id="login">
+    <div class="card-block">
+        <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+            <label class="sr-only" for="emailInput">Username</label>
+            <div class="form-group input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+                <input formControlName="email" type="text" class="form-control" id="email" placeholder="Email">
+            </div>
+            <br/>
+            <label class="sr-only" for="passwordInput">Password</label>
+            <div class="form-group input-group mb-2 mr-sm-2 mb-sm-0">
+                <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                <input formControlName="password" type="password"  class="form-control" id="passwordInput" placeholder="password">
+            </div>
+            <br/>
+            <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+    </div>
+</div>

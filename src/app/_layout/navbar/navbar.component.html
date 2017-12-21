@@ -1,0 +1,23 @@
+<div>
+    <div class="row">
+        <div class="col-sm-8 navbar-container">
+            <a href="/" class="brand-logo"></a>
+            <a href="/" class="navButton"  id="sidebarCollapse"><i class="fa fa-bars"></i></a>
+            <a href="/" class="navButton"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="col-sm-4 navRight">
+            <a href="/" class="navButton right"><i class="fa fa-plus"></i></a>
+            <a href="/" class="navButton right"><i class="fa fa-bell"></i></a>
+            <div ngbDropdown class="d-inline-block userButton">
+                <button id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="fa fa-user"></i>{{ currentUser.name }}
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item">Profile</button>
+                    <button class="dropdown-item">Security</button>
+                    <button class="dropdown-item">Sign out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

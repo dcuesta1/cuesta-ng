@@ -1,0 +1,50 @@
+.navbar-container{
+    height: 60px;
+}
+
+.brand-logo{
+    float: left;
+    height: 100%;
+    width: 243px;
+    background-color: orange;
+}
+
+.navButton{
+    display: inline-block;
+    line-height: 60px;
+    height: 100%;
+    border-left: 1px solid #ccc;
+    padding: 0 20px;
+    color: #666;
+}
+
+.navButton:last-child{
+    border-right: 1px solid #ccc;
+}
+    
+.navButton i{
+    font-size: 1.3em;
+}
+
+.navRight{
+    text-align: right
+}
+
+.userButton{
+    border: 0px;
+    height: 100%;
+    border-left: 1px solid #ccc;
+    float: right;
+    line-height: 60px;
+}
+
+.userButton button {
+    border: 0px;
+    color: #666 !important;
+    background: inherit;
+    padding: 0 20px;
+}
+
+.userButton button i{
+    padding-right: 5px;
+}
