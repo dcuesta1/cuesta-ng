@@ -30,4 +30,8 @@ export class LocalService {
     SetAuthToken(authToken: string) :void{
         localStorage.setItem(environment.local.authToken, authToken);
     }
+
+    clear() :void {
+        localStorage.clear();
+    }
 }

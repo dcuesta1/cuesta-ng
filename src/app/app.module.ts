@@ -17,12 +17,14 @@ import { SidebarComponent } from './_layout/sidebar/sidebar.component';
   Services
 */
 import { LocalService } from './_services/local.service';
-import { ErrorInterceptorProvider } from './_etc/ErrorInterCeptor';
 import { GLobalEventsManager } from './_etc/GlobalEventsManager';
-import { ApiService } from './_services/api.service';
 import { UserService } from './_services/user.service';
 import { AuthService } from './_services/auth.service';
 import { AuthGuard } from './_guards/auth.guard';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { CustomersComponent } from './customers/customers.component';
+import { InvoiceService } from './_services/invoice.service';
+import { AuthInterceptorProvider } from './_etc/AuthInterceptor';
 
 /*
   Routes
@@ -36,6 +38,16 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'customers',
+    component: CustomersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'invoices',
+    component: InvoicesComponent,
+    canActivate: [AuthGuard]
   }
 ];
 
@@ -45,7 +57,9 @@ const routes: Routes = [
     LoginComponent,
     DashboardComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    InvoicesComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +70,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    ErrorInterceptorProvider,
+    AuthInterceptorProvider,
     LocalService,
-    ApiService,
     UserService,
     AuthService,
+    InvoiceService,
     GLobalEventsManager,
     AuthGuard
   ],

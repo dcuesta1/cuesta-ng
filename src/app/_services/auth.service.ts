@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { ApiService } from "./api.service";
 import { User } from "../_models/User";
 import { LocalService } from "./local.service";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AuthService {
@@ -10,8 +10,8 @@ export class AuthService {
     public currentUser: User
     
     constructor(
-        private api:ApiService,
-        private local:LocalService
+        private local:LocalService,
+        private http: HttpClient
     ){}
 
     setDevice() :void{
@@ -23,6 +23,7 @@ export class AuthService {
     authenticate(email, password) {
         this.setDevice();
         let device = this.device;
-        return this.api.post('/authenticate', {email, password, device});
+        
+        return this.http.post<User>('/authenticate', { email, password, device});
     }
 }

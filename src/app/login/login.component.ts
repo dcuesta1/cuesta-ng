@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Response } from '@angular/http';
 import { GLobalEventsManager } from '../_etc/GlobalEventsManager';
-import { environment } from '../../environments/environment.prod';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/User';
 import { LocalService } from '../_services/local.service';
@@ -40,10 +38,10 @@ export class LoginComponent{
         (user: User) => {
           this.globalEventsManager.showNavigations(true);
           this.local.SetCurrentUser(user);
-          this.local.SetAuthToken(user.email);
           this.router.navigate(['/dashboard']);
         }
       );
   }
 
+  //TODO: register methods
 }
