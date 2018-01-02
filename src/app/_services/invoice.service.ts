@@ -7,7 +7,7 @@ export class InvoiceService {
     constructor(private api :HttpClient) {}   
 
     index() {
-        return this.api.get<Invoice[]>('/invoices');
+        return this.api.get<Array<Invoice>>('/invoices');
     }
 
     show(id:number) {
