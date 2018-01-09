@@ -4,27 +4,24 @@ import { User } from "../_models/User";
 
 @Injectable()
 export class LocalService {
-    getCurrentUser() : User{
+    getCurrentUser() :string | null {
         return JSON.parse(localStorage.getItem(environment.local.currentUser));
-        
     }
 
     SetCurrentUser(user:User) :void{
         localStorage.setItem(environment.local.currentUser, JSON.stringify(user));
     }
 
-    getDeviceId() : string{
+    getDeviceId() : string | null {
         return localStorage.getItem(environment.local.deviceId);
-        
     }
 
     SetDeviceId(deviceId: string) :void{
         localStorage.setItem(environment.local.deviceId, deviceId);
     }
 
-    getAuthToken() : string{
+    getAuthToken() : string | null {
         return localStorage.getItem(environment.local.authToken);
-        
     }
 
     SetAuthToken(authToken: string) :void{

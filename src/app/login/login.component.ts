@@ -7,7 +7,7 @@ import { User } from '../_models/User';
 import { LocalService } from '../_services/local.service';
 
 @Component({
-  selector: '#loginComponent',
+  selector: '.loginComponent',
   templateUrl: './login.component.html'
 })
 export class LoginComponent{

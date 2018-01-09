@@ -1,0 +1,23 @@
+<div class="container-fluid offWhite">
+  <!-- Title & Navigation -->
+  <div class="title-header title-header--nav-right">
+    <div class="row" style="width:100%">
+      <div class="col-lg-8 title-header_title title-header--nav-right_title">Account &amp; Settings</div>
+    </div>  
+  </div>
+<div class="row" style="width: 100%">
+  <div class="col-lg-2">
+    <nav class="component-sidebar nav flex-column">
+      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/settings/personal">Personal Information</a>
+      <a class="nav-link" href="#">Square Account</a>
+      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/settings/business">Business Information</a>
+      <a class="nav-link" href="#">Notifications</a>    
+      <a class="nav-link" href="#">Email Settings</a>    
+    </nav>
+  </div>
+  <div class="col-lg-10">
+    <main class="componentMain">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

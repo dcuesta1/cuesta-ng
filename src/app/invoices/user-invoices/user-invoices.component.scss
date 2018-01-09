@@ -1,0 +1,83 @@
+.inv-table-status-1 {
+    color: #5c6063;
+    font-weight: 500;
+}
+
+.inv-table-status-2 {
+    color: #2996cc;
+    font-weight: 500;
+}
+
+.inv-table-status-4 {
+    color: #38a100;
+    font-weight: 500;
+}
+
+.transactionsTable tr {
+    cursor: pointer;   
+}
+
+.transactionsTable tr:hover {
+    background: #bbdefb;
+}
+
+.create-invoice_actions {
+    margin-bottom: 24px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-flex: 0;
+    flex: none;
+}
+
+.create-invoice_actions-item {
+    width: 33%;
+    text-align: center;
+}
+
+.create-invoice-details_section {
+    padding: 34px 0;
+    border-bottom: 1px solid #d6d7d8;
+}
+
+.create-invoice_details-body {
+    padding: 31px 48px;
+    border: 1px solid #d6d7d8;
+    background: #fff;
+}
+
+.create-invoice_details-body_header {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.create-invoice-details_detail-header {
+    color: #1f2428;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.create-invoice-details_item {
+    font-weight: 500;
+    zoom: 1;
+    display: flex
+}
+
+.create-invoice-details_item-odd-row {
+    color: #5c6063;
+    padding-top: 6px;
+    line-height: 1;
+}
+
+.create-invoice-details_item-desc {
+    width: 70%;
+    float: left;
+    min-height: 1px;
+}
+
+.create-invoice-details_item-price {
+    width: 30%;
+    float: left;
+    min-height: 1px;
+}

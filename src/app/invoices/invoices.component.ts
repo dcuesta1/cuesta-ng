@@ -2,7 +2,6 @@ import { Component } from "@angular/core/";
 import { Invoice } from "../_models/Invoice";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { InvoiceService } from "../_services/invoice.service";
-import { IInvoice } from "../_interfaces/IInvoice";
 import { Customer } from "../_models/Customer";
 
 @Component({

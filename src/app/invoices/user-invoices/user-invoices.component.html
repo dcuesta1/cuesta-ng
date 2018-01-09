@@ -1,0 +1,193 @@
+<div class="container-fluid component-container offWhite">
+  <!-- Title & Navigation -->
+  <div class="title-header title-header--nav-right">
+    <div class="row" style="width:100%">
+      <div class="col-lg-8 title-header_title title-header--nav-right_title">Invoices</div>
+      <div  class="col-lg-4 title-header_navigation">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/invoices">Invoices</a>
+          </li>
+        </ul>
+      </div>
+    </div>  
+  </div>
+  <div class="row" style="width: 100%">
+    <div class="col-md-4 center">
+      <div>
+        <div class="key-stat">${{paid/100}}</div>
+        <div class="key-stat-label">Paid <span style="font-weight:400">(Last 30 Days)</span></div>
+      </div>
+    </div>
+    <div class="col-md-4 center">
+        <div>
+          <div class="key-stat">${{outstanding/100}}</div>
+          <div class="key-stat-label">Outstanding</div>
+        </div>
+    </div>
+    <div class="col-md-4 center">
+        <div>
+          <div class="key-stat">${{estimates/100}}</div>
+          <div class="key-stat-label">Estimates</div>
+        </div>
+    </div>
+  </div>
+  <div class="filter-bar filter-bar-border-top">
+    <div class="filter-bar_filters col-lg-8">
+      <select class="custom-select" id="inputGroupSelect01" disabled>
+        <option selected>All Time</option>
+        <option value="1">Status</option>
+        <option value="2">Paid</option>
+        <option value="3">Pending</option>
+      </select>
+      <select class="custom-select" id="inputGroupSelect01" disabled>
+        <option selected>All Invoices</option>
+        <option value="1">Status</option>
+        <option value="2">Paid</option>
+        <option value="3">Pending</option>
+      </select>
+    </div>
+    <div class="filter-bar_actions col-lg-4">
+      <button class="btn btn-primary">Create Invoice</button>
+    </div>
+  </div>
+  <table class="table componentTable">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">ID</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Status</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody class="transactionsTable">
+      <tr *ngFor="let invoice of invoices" (click)="viewInvoice(invoice)">
+        <td>{{invoice.created_at | date : 'mediumDate'}}</td>
+        <td>{{invoice.number}}</td>
+        <td>{{invoice.customer.fullName()}}</td>
+        <td class="inv-table-status-{{invoice.status}}">{{invoice.getStatus()}}</td>
+        <td>${{invoice.cost/100}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="selectedInvoice" class="sidePopup">
+    <div class="sidePopup_content">
+      <div *ngIf="selectedInvoice.status == 4" class="create-invoice_actions">
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Duplicate</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Share</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Print</button>
+        </div>
+      </div>
+
+      <div *ngIf="selectedInvoice.status == 1" class="create-invoice_actions">
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Remind</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Edit</button>
+        </div>
+        <div class="create-invoice_actions-item">
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Take Payment</a>
+              <a class="dropdown-item" href="#">Print</a>
+              <a class="dropdown-item" href="#">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="selectedInvoice.status == 2" class="create-invoice_actions">
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Edit</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Duplicate</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Delete</button>
+        </div>
+      </div>
+
+      <div *ngIf="selectedInvoice.status == 8" class="create-invoice_actions">
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Duplicate</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Share</button>
+        </div>
+        <div class="create-invoice_actions-item">
+            <button class="btn btn-outline-primary">Print</button>
+        </div>
+      </div>
+
+      <div class="create-invoice_details">
+        <div class="create-invoice_details-body">
+          <div class="create-invoice_details-body_header">Invoice #{{selectedInvoice.number}}</div>
+          <p>Date: Jan 1, 2018</p>
+          <div class="create-invoice-details_section" style="border-top: 1px solid #d6d7d8">
+            <div class="create-invoice-details_section-row">
+              <h4 class="create-invoice-details_detail-header">Customer</h4>
+              <a href="#">{{selectedInvoice.customer.fullName()}}</a>
+            </div>
+          </div>
+          <div class="create-invoice-details_section">
+            <p class="center">We appreciate your business.</p>
+          </div>
+          <div class="create-invoice-details_section">
+            <div class="create-invoice-details_section-row cf">
+              <div class="create-invoice-details_item">
+                <div class="create-invoice-details_item-desc">Transmission</div>
+                <div class="create-invoice-details_item-price">$2.00</div>
+              </div>
+              <div class="create-invoice-details_item create-invoice-details_item-odd-row">
+                <div class="create-invoice-details_item-desc">Labor</div>
+                <div class="create-invoice-details_item-price">$2.00</div>
+              </div>
+            </div>
+          </div>
+          <div class="create-invoice-details_section">
+            <div class="create-invoice-details_section-row cf">
+              <div class="create-invoice-details_item">
+                <div class="create-invoice-details_item-desc">
+                  <span style="font-weight:400">Subtotal</span>
+                </div>
+                <div class="create-invoice-details_item-price">
+                  <span style="font-weight:400">${{selectedInvoice.cost/100}}</span>
+                </div>
+              </div>
+              <div class="create-invoice-details_item create-invoice-details_item-odd-row">
+                <div class="create-invoice-details_item-desc">
+                  <span style="font-weight:400">Tax</span>
+                </div>
+                <div class="create-invoice-details_item-price">
+                  <span style="font-weight:400">$0.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="create-invoice-details_section border-bottom-0">
+            <div class="create-invoice-details_section-row">
+              <div class="create-invoice-details_item create-invoice-details_item-odd-row" style="color:#111;font-weight:600;font-size:26px">
+                <div class="create-invoice-details_item-desc">Total</div>
+                <div class="create-invoice-details_item-price">${{selectedInvoice.cost/100}}</div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div class="sidePopup_bottom-pane">
+        <button class="btn btn-primary sidePopup_bottom-pane_button" (click)="closeInvoicePane()">Done</button>
+    </div>
+  </div>
+</div>

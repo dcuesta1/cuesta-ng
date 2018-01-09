@@ -1,0 +1,61 @@
+<div class="container-fluid component-container offWhite">
+  <!-- Title & Navigation -->
+  <div class="title-header title-header--nav-right">
+    <div class="row" style="width:100%">
+      <div class="col-lg-8 title-header_title title-header--nav-right_title">Transactions</div>
+      <div  class="col-lg-4 title-header_navigation">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/reports/summary">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/transactions">Transactions</a>
+          </li>
+        </ul>
+      </div>
+    </div>  
+  </div>
+
+  <div class="row" style="width: 100%">
+    <div class="col-md-4 center">
+      <div>
+        <div class="key-stat">{{totalTransactions}}</div>
+        <div class="key-stat-label">Transactions</div>
+      </div>
+    </div>
+    <div class="col-md-4 center">
+        <div>
+          <div class="key-stat">${{totalCollected | number : '1.2-2'}}</div>
+          <div class="key-stat-label">Total Collected</div>
+        </div>
+    </div>
+    <div class="col-md-4 center">
+        <div>
+          <div class="key-stat">${{netSales | number : '1.2-2'}}</div>
+          <div class="key-stat-label">Net Sales</div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+    <div id="transactions-table-container">
+      <table class="table table-hover componentTable">
+        <tbody>
+          <tr>
+            <td>Mar 3, 2017</td>
+            <td></td>
+            <td></td>
+            <td>$100.59</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-money"></i></td>
+            <td>10:24 pm</td>
+            <td>Customer | desc</td>
+            <td>$100.59</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>,

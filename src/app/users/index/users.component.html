@@ -1,0 +1,11 @@
+  <div class="card usersCard" *ngFor="let user of users">
+    <div class="card-block">
+      <h4 class="card-title">
+        <i *ngIf="user.isSuperUser()" class="fa fa-shield"></i>
+        <a [routerLink]="[ '/user', user.id ]">{{ user.name }}</a></h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{user.email}}</h6>
+      <!-- <p class="card-text"></p> -->
+      <div class="text-right" style="width:100%">Joined {{user.created_at | date:'MMM, yyyy'}}</div>
+      <div *ngIf="user.isAdmin()" class="card-link text-right" style="width:100%">{{user.invoices.length}} Sales</div>
+    </div>
+  </div>

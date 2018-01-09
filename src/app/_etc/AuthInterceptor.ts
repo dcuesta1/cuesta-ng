@@ -69,8 +69,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 errMsg = err.message ? err.message : err.toString();
             }
             return _throw(errMsg);  
-          });
-            
+        });
     }
 }
 

@@ -1,0 +1,21 @@
+#sales-reports-summary-table tr{
+    line-height: 30px;
+}
+
+#sales-reports-summary-table thead th{
+    border: 0px;
+}
+
+#sales-reports-summary-table tr,
+#sales-reports-summary-table td,
+#sales-reports-summary-table th {
+    border-color: #ccc;
+}
+
+#sales-reports-summary-table tr.table-divider {
+    border-bottom: 2px solid #aaa;
+}
+
+#sales-reports-summary-table .pad-left-table {
+    padding-left: 40px !important
+}

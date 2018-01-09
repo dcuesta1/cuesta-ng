@@ -3,6 +3,11 @@ import { Payment } from "./Payment";
 import { BaseModel } from "./BaseModel";
 
 export class Invoice extends BaseModel{
+    static readonly PENDING_PAYMENT = 1;
+    static readonly ESTIMATE = 2;
+    static readonly CLOSED = 4;
+    static readonly CANCELLED = 8;
+
     id: number;
     user_id: number;
     number: string;
@@ -16,18 +21,23 @@ export class Invoice extends BaseModel{
 
     constructor(model: any) {
         super(model);
-        let customer = this.customer[0];
-        this.customer = new Customer(customer);
+        if(this.customer) {
+            let customer = this.customer[0];
+            this.customer = new Customer(customer);
+        }
 
-        var i = 0;
-        for(let payment of this.payments) {
-            this.payments[i] = new Payment(payment);
-            i++;
+        if(this.payments) {
+            var i = 0;
+            for(let payment of this.payments) {
+                this.payments[i] = new Payment(payment);
+                i++;
+            }
         }
     }
 
-    balance() {
-        return (this.cost - this.net()) > 0 ? '$'+(this.cost - this.net()).toFixed(2) : 'Paid';
+    balance() :string{
+        let balance :number = this.cost - this.net();
+        return  balance > 0 ? '$' + String(balance) : 'Paid';
     }
     
     net() :number {
@@ -37,6 +47,72 @@ export class Invoice extends BaseModel{
             net += payment.net;
         }
 
-        return net;
+        return this.round(net);
+    }
+
+    tips() :number{
+        let val = 0;
+
+        for(let payment of this.payments) {
+            val += payment.tip;
+        }
+
+        return this.round(val);
+    }
+
+    fees() :number{
+        let val = 0;
+
+        for(let payment of this.payments) {
+            val += payment.fees;
+        }
+
+        return this.round(val);
+    }
+
+    merchantFees() :number{
+        let val = 0;
+
+        for(let payment of this.payments) {
+            val += payment.merchant_fees;
+        }
+
+        return this.round(val);
+    }
+
+    grossSale() :number {
+        return this.round(this.net() + this.fees());
+    }
+
+    totalCollected() :number {
+        return this.round(this.net() + this.tips() + this.fees());
+    }
+
+    totalPaid() :number{
+        return this.round(this.net() + this.tips() + this.fees() + this.merchantFees());
+    }
+
+    round(value: number) :number {
+        return value/100;
+    }
+
+    public getStatus() :string{
+        let status = ''
+        switch (this.status) {
+            case Invoice.CLOSED:
+                status = 'Paid';
+                break;
+            case Invoice.PENDING_PAYMENT:
+                status = 'Unpaid';
+                break;
+            case Invoice.ESTIMATE:
+                status = 'Estimate';
+                break;     
+            case Invoice.CANCELLED:
+                status = 'Cancelled';
+                break;       
+        }
+
+        return status;
     }
 }

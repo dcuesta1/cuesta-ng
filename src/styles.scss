@@ -8,29 +8,52 @@ html {
 
 body {
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-#loginCover{
-    width: 100%;
-    height: 100%;
-    background: white;
+p {
+    font-size: 14px;
 }
 
-/* fixed and fluid only on sm and up */
-@media (min-width: 576px) {
-    .fixed {
-        flex: 0 0 200px;
-        min-height: 100vh;
-    }
-    .col .fluid {
-       min-height: 100vh;
-    }
+button {
+    cursor: pointer;
+}
+
+.cf {
+    clear: both;
+}
+
+.offWhite{
+    background: #fafafa;
+}
+
+.gray {
+    background: #ccc;
 }
 
 .flex-grow {
    flex:1;
 }
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+.center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+/**
+    Navbar Component
+*/
 
 .navbarComp{
     height: 60px;
@@ -38,6 +61,9 @@ body {
     box-shadow: 1px 1px 3px #ccc;
 }
 
+/**
+    Sidebar Component
+*/
 .sidebar{
     height: 100%;
     background: #2f2f2f;
@@ -47,7 +73,6 @@ body {
     text-align:center;
 }
 
-/* MOVE BELOW SOMEWHERE */
 .sidebar .sidebar-item-names{
     display: none;
 }
@@ -64,23 +89,26 @@ body {
     color: rgb(182, 182, 182);
 }
 
-.right{
-    float: right;
+/**
+    Global Component Classes
+*/
+
+.logincomponent,
+.userscomponent,
+.salessummarycomponent,
+.salestransactionscomponent,
+.userscustomerscomponent,
+.userinvoicescomponent,
+.indexsettingscomponent,
+.personalsettingscomponent,
+.businesssettingscomponent{
+    width: 100%;
 }
 
-.left{
-    float: left;
-}
-
-.center {
-    text-align: center;
-}
-
-loginComponent{
+#loginCover{
     width: 100%;
     height: 100%;
-    display: flex;
-    background: #fafafa
+    background: white;
 }
 
 #login{
@@ -97,4 +125,173 @@ loginComponent{
 
 .form-control.ng-touched.ng-invalid{
     border: 1px solid red;
+}
+
+/**
+    Component title & tab navigation
+*/
+
+.title-header{
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #d6d7d8;
+}
+
+.title-header--nav-right {
+    flex-wrap: wrap;
+    -webkit-box-align: end;
+    align-items: flex-end;
+    min-height: 57px;
+}
+
+.title-header_title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.454;
+}
+
+.title-header--nav-right_title {
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 17px 18px;
+}
+
+.title-header_navigation {
+    position: relative;
+    bottom: -24px;
+}
+
+/**
+    Filter Bar & Action
+*/
+
+.filter-bar-border-top {
+    border-top: 1px solid #ccc;
+    margin-top: 15px
+}
+
+.filter-bar {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.filet-bar_filters {
+    -webkit-box-flex: 0;
+    flex: 0 1 auto;
+}
+
+.filter-bar_actions {
+    -webkit-box-flex: 0;
+    flex: none;
+    margin-left: 12px;
+}
+
+.filter-bar_actions .btn{
+    float: right !important;
+}
+
+/**
+    Component body & sidebar
+*/
+
+.componentMain {
+    margin: 0 auto;
+}
+
+.component-sidebar a.active {
+    background: #2996cc;
+    border-radius: 5px;
+    color: white;
+}
+
+.key-stat {
+    color: #1f2428;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.333;
+}
+
+.key-stat-label {
+    color: #5c6063;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.667;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.componentTable tr,
+.componentTable th,
+.componentTable td{
+    border-color: #ccc !important;
+}
+
+/**
+    Side Popup
+*/
+
+.sidePopup {
+    position: fixed;
+    z-index: 100;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    height: 100%;
+    background: white;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    width: 560px;
+    border-left: 1px solid #d6d7d8;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1), 0 8px 32px 4px rgba(0, 0, 0, 0.1), 0 8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidePopup_content {
+    padding-left: 36px;
+    padding-right: 36px;
+    padding-top: 35px;
+    padding-bottom: 60px;
+    -webkit-box-flex: 1;
+    flex: auto 1 1;
+    overflow-y: auto;
+}
+
+.sidePopup_bottom-pane {
+    height: 72px;
+    background: #fff;
+    z-index: 10;
+    border-top: 1px #d6d7d8 solid;
+}
+
+.sidePopup_bottom-pane_button {
+    float: right;
+    margin: 8px 30px 0 0;
+}
+
+/**
+    ACTIONS BAR BOTTOM "CANCEL & SAVE BAR"
+*/
+
+.bottom-actions-bar {
+    -webkit-box-flex: 1;
+    flex: auto 0 0;
+}
+
+/* fixed and fluid only on sm and up */
+@media (min-width: 576px) {
+    .fixed {
+        flex: 0 0 200px;
+        min-height: 100vh;
+    }
+    .col .fluid {
+       min-height: 100vh;
+    }
 }

@@ -1,0 +1,112 @@
+<div class="container-fluid offWhite">
+  <!-- Title & Navigation -->
+  <div class="title-header title-header--nav-right">
+    <div class="row" style="width:100%">
+      <div class="col-lg-8 title-header_title title-header--nav-right_title">Sales</div>
+      <div  class="col-lg-4 title-header_navigation">
+          <ul class="nav nav-tabs">
+          <li class="nav-item">
+              <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/reports/summary">Reports</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/transactions">Transactions</a>
+          </li>
+          </ul>
+      </div>
+    </div>  
+  </div>
+
+  <div class="row" style="width: 100%">
+    <div class="col-lg-2">
+      <nav class="component-sidebar nav flex-column">
+          <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/reports/summary">Summary</a>
+          <a class="nav-link" href="#">Sales Trends</a>
+          <a class="nav-link" href="#">Parts Sales</a>
+          <a class="nav-link" href="#">Labor vs Sales</a>
+          <a class="nav-link" href="#">Taxes</a>
+      </nav>
+    </div>
+    <div class="col-lg-10">
+      <main class="componentMain">
+        <table id="sales-reports-summary-table" class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Sales</th>
+              <th>Refunds</th>
+              <th>Net</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bold">
+              <th>Gross Sales</th>
+              <td>${{grossSalesSales | number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{grossSalesSales | number : '1.2-2'}}</td>
+            </tr>
+            <tr>
+              <td>Discounts</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+            </tr>
+            <tr class="bold">
+              <th>Net Sales</th>
+              <td>${{netSalesSales | number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{netSalesNet | number : '1.2-2'}}</td>
+            </tr>
+            <tr>
+              <td>Tax</td>
+              <td>${{taxSales | number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{taxNet | number : '1.2-2'}}</td>
+            </tr>
+            <tr>
+              <td>Tips</td>
+              <td>${{tipsSales | number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{tipsNet | number : '1.2-2'}}</td>
+            </tr>
+            <tr class="table-divider bold">
+              <th>Total Collected</th>
+              <td>${{totalCollectedNet | number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{totalCollectedNet | number : '1.2-2'}}</td>
+            </tr>
+            <tr>
+              <td class="pad-left-table">Cash</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td class="pad-left-table">Card</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td class="pad-left-table">Other</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+            </tr>
+            <tr>
+              <td>Merchant Fees</td>
+              <td>(${{merchantFeesSales| number : '1.2-2'}})</td>
+              <td>$0.00</td>
+              <td>(${{merchantFeesSales| number : '1.2-2'}})</td>
+            </tr>
+            <tr class="bold">
+              <th>Net Total</th>
+              <td>${{netTotalSales| number : '1.2-2'}}</td>
+              <td>$0.00</td>
+              <td>${{netTotalNet | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>  
+    </div>
+  </div>
+</div>

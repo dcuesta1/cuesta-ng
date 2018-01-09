@@ -9,7 +9,7 @@ import { LocalService } from './_services/local.service';
     <nav class="navbarComp" *ngIf="showNavigations"></nav>
     <div class="row" style="height:100vh">
     <div class="fixed sidebar" id="sidebar" *ngIf="showNavigations"></div>
-    <div class="col fluid d-flex flex-column">
+    <div class="col fluid d-flex flex-column"  style="overflow:auto">
       <div class="row flex-grow">
         <router-outlet></router-outlet>
       </div>  

@@ -12,18 +12,20 @@ import { GLobalEventsManager } from '../../_etc/GlobalEventsManager';
 })
 export class NavbarComponent {
 
-  currentUser: User = JSON.parse(localStorage.getItem('user'));
+  currentUser: User;
   notification: number = 0;
   
   constructor(
-    private router :Router,
-    private local :LocalService,
-    private globalEventsManager: GLobalEventsManager
-  ) { }
+    private _router :Router,
+    private _local :LocalService,
+    private _globalEventsManager: GLobalEventsManager
+  ) { 
+    this.currentUser = new User(_local.getCurrentUser());
+  }
 
   logout() :void {
-    this.local.clear();
-    this.globalEventsManager.showNavigations(false);
-    this.router.navigate(['/']);
+    this._local.clear();
+    this._globalEventsManager.showNavigations(false);
+    this._router.navigate(['/']);
   }
 }

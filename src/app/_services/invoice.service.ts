@@ -4,25 +4,29 @@ import { Invoice } from "../_models/Invoice";
 
 @Injectable()
 export class InvoiceService {
-    constructor(private api :HttpClient) {}   
+    constructor(private _api :HttpClient) {}   
 
     index() {
-        return this.api.get<Array<Invoice>>('/invoices');
+        return this._api.get<Array<Invoice>>('/invoices');
+    }
+
+    userInvoices(username :string) {
+        return this._api.get<Array<Invoice>>('/user/' + username + '/invoices');
     }
 
     show(id:number) {
-        return this.api.get<Invoice>('/invoices/' + id)
+        return this._api.get<Invoice>('/invoices/' + id)
     }
 
     create(invoice :Invoice) {
-        return this.api.post<Invoice>('/invoices', invoice);
+        return this._api.post<Invoice>('/invoices', invoice);
     }
 
     update(invoice :Invoice) {
-        return this.api.put<Invoice>('/invoices/' + invoice.id, invoice);
+        return this._api.put<Invoice>('/invoices/' + invoice.id, invoice);
     }
 
     destroy(id:number) {
-        return this.api.delete<boolean>('/invoices/' + id);
+        return this._api.delete<boolean>('/invoices/' + id);
     }
 }

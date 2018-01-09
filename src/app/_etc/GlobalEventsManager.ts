@@ -10,15 +10,15 @@ export class GLobalEventsManager {
     private _showNavigations: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public showNavEmitter: Observable<boolean> = this._showNavigations.asObservable();
 
-    private _currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(new User);
-    public currentUserEmitter: Observable<boolean> = this._showNavigations.asObservable();
+    // private _currentUser: BehaviorSubject<User> = new BehaviorSubject<User>(new User);
+    // public currentUserEmitter: Observable<boolean> = this._showNavigations.asObservable();
 
     showNavigations(ifShow: boolean) {
         this._showNavigations.next(ifShow);
     }
 
-    logUser(user: User) {
-        this._currentUser.next(user);
-        this.user = user;
-    }
+    // logUser(user: User) {
+    //     this._currentUser.next(user);
+    //     this.user = user;
+    // }
 }
