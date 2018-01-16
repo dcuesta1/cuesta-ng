@@ -2,17 +2,166 @@
     <!-- Title & Navigation -->
     <div class="title-header title-header--nav-right">
         <div class="row" style="width:100%">
-        <div class="col-lg-8 title-header_title title-header--nav-right_title">Customers</div>
-        <div  class="col-lg-4 title-header_navigation">
-            <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/reports/summary">Directory</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/sales/transactions">Settings</a>
-            </li>
-            </ul>
-        </div>
+            <div class="col-lg-8 title-header_title title-header--nav-right_title">Customers</div>
+            <div  class="col-lg-4 title-header_navigation">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{_currentUser.username}}/customers">Directory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{_currentUser.username}}/customers/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
         </div>  
     </div>
+    <div class="row" style="padding: 10px 0">
+        <div class="col-lg-8">
+            <div class="col-sm-4 left">
+                <input [(ngModel)]="searchInput" type="text" placeholder="Search.." class="form-control"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <button class="btn btn-primary right">Create Customer</button>
+        </div>
+    </div>
+    <table class="table componentTable">
+        <thead>
+            <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Vehicles</th>
+            </tr>
+        </thead>
+        <tbody class="customersTable">
+            <tr *ngFor="let customer of customers" (click)="viewCustomer(customer)">
+                <td class="cap">{{customer.fullName()}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.phone}}</td>
+                <td>
+                    <span class="cap" *ngFor="let car of customer.cars">
+                        {{car.model}} {{car.year}} 
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="customerPane" class="sidePopup" id="customerPanePanel">
+        <div class="sidePopup_content">
+            <div class="customerPane_header cap">
+               {{customer.fullName()}}
+            </div>
+            <div class="customerPane_main-row">
+                <div class="customerPane_main-header-section">
+                    <div class="customerPane_main-header">
+                        Personal Information
+                    </div>
+                    <button class="btn btn-link" (click)="openModal('editCustomerModal')">Edit Customer</button>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Email</th>
+                            <td><a href="mailto:{{customer.email}}">{{customer.email}}</a></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{customer.phone}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td class="cap">{{customer.address_one}}</td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><span class="cap">{{customer.city}}</span>, <span class="uc">{{customer.state}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="customerPane_main-row">
+                <div class="customerPane_main-header-section">
+                    <div class="customerPane_main-header">
+                        Vehicles
+                    </div>
+                    <button class="btn btn-link right" (click)="openModal('newVehicleModal')">New Vehicle</button>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Vin</th>
+                        </tr>
+                        <tr *ngFor="let car of customer.cars">
+                            <td class="cap">{{car.make}}</td>
+                            <td class="cap">{{car.model}}</td>
+                            <td>{{car.year}}</td>
+                            <td>{{car.number}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="customerPane_main-row">
+                <div class="customerPane_main-header-section">
+                    <div class="customerPane_main-header">
+                        History
+                    </div>
+                    <button class="btn btn-link right">View Invoices</button>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let invoice of customer.invoices">
+                            <td>{{invoice.created_at | date: "MM/dd/yyyy"}}</td>
+                            <td class="inv-table-status-{{invoice.status}} cap">{{invoice.getStatus()}}</td>
+                            <td>{{invoice.cost}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="sidePopup_bottom-pane">
+            <button class="btn btn-primary sidePopup_bottom-pane_button" (click)="closeCustomerPane()">Done</button>
+        </div>
+    </div>
 </div>
+<modal id="editCustomerModal" class="small-modal">
+    <div class="modal-background">
+        <div class="modal">
+            <div class="modal-body">
+                <edit-customer 
+                    *ngIf="customer" 
+                    class="editCustomerChildComponent" 
+                    [customer]="customer"
+                    (onCustomerUpdated)="updateCustomer($event)"></edit-customer>
+            </div>
+        </div>
+    </div>
+</modal>
+<modal id="editVehiclesModal" class="large-modal">
+    <div class="modal-background">
+        <div class="modal">
+            <div class="modal-body">
+                <edit-vehicles 
+                    *ngIf="customer && customer.cars"
+                    [cars]="customer.cars"
+                    class="editVehiclesChilComponent"></edit-vehicles>
+            </div>
+        </div>
+    </div>
+</modal>
+<modal id="newVehicleModal" class="small-modal">
+    <div class="modal-background">
+        <div class="modal">
+            <div class="modal-body">
+                <new-vehicle 
+                    *ngIf="customer" 
+                    [customerId]="customer.id"
+                    (onVehicleCreated)="addVehicle($event)" 
+                    class="editVehiclesChilComponent"></new-vehicle>
+            </div>
+        </div>
+    </div>
+</modal>

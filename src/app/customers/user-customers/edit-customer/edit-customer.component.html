@@ -1,0 +1,82 @@
+<div class="editCustomerModal">
+    <div class="editCustomerModal-header">Edit Customer</div>
+    <form [formGroup]="editCustomerForm">
+        <div class="form-group row">
+            <label for="first-name" class="col-sm-3 col-form-label">First Name</label>
+            <div class="col-sm-9">
+            <input type="text" class="form-control" id="first-name" 
+                placeholder="First Name"
+                formControlName="first_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="last-name" class="col-sm-3 col-form-label">Last Name</label>
+            <div class="col-sm-9">
+            <input type="text" class="form-control" id="last-name" 
+                placeholder="Last Name"
+                formControlName="last_name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="phone" 
+                    value="{{customer.phone}}"
+                    placeholder="(xxx) xxx-xxxx"
+                    formControlName="phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="email" 
+                    value="{{customer.email}}"
+                    placeholder="Email"
+                    formControlName="email">
+            </div>
+        </div>
+        <div class="form-group row no-border">
+            <label for="address-one" class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control border" id="address-one" 
+                    placeholder="Street Address" 
+                    formControlName="address_one">
+            </div>
+        </div>
+        <div class="form-group row no-border">
+            <label for="address-two" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control border" id="address-two" 
+                    placeholder="Apt/Suite" 
+                    formControlName="address_two">
+            </div>
+        </div>
+        <div class="form-group row no-border">
+            <label for="city" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control border" id="city" 
+                    placeholder="City" 
+                    formControlName="city">
+            </div>
+        </div>
+        <div class="form-group row no-border">
+            <label for="state" class="col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+                <select class="form-control" id="state" formControlName="state">
+                    <option disabled>State</option>
+                    <option 
+                        *ngFor="let state of states; index as i;" 
+                        value="{{st[i] | lowercase}}">{{state}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <div class="modal-actions">
+        <button class="btn btn-outline-danger left" (click)="closeModal();">Cancel</button>
+        <button 
+            class="btn btn-primary right" 
+            (click)="submit()"
+            type="submit"
+            [disabled]="editCustomerForm.invalid || (editCustomerForm.valid && editCustomerForm.pristine)">Save</button>
+    </div>
+</div>

@@ -40,6 +40,14 @@ import { TransactionsComponent } from './sales/transactions/transactions.compone
 import { UserInvoicesComponent } from './invoices/user-invoices/user-invoices.component';
 import { SettingsModule } from './settings/settings.module';
 import { LoadingSpinnerComponent } from './_layout/loading-spinner/loading-spinner.component';
+import { CustomerService } from './_services/customer.service';
+import { ModalDirective } from './_directives/modal.directive';
+import { ModalService } from './_services/modal.service';
+import { EditUserComponent } from './customers/user-customers/edit-customer/edit-customer.component';
+import { EditVehiclesComponent } from './customers/user-customers/edit-vehicles/edit-vehicles.component';
+import { CarService } from './_services/car.service';
+import { NewVehicleComponent } from './customers/user-customers/new-vehicle/new-vehicle.component';
+import { AutoTelematicService } from './_services/auto-telematic.service';
 
 /*
   Routes
@@ -111,6 +119,10 @@ const routes: Routes = [
     SalesReportsSummaryComponent,
     TransactionsComponent,
     LoadingSpinnerComponent,
+    EditUserComponent,
+    ModalDirective,
+    EditVehiclesComponent,
+    NewVehicleComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,7 +139,11 @@ const routes: Routes = [
     UserService,
     AuthService,
     InvoiceService,
+    CustomerService,
+    CarService,
+    AutoTelematicService,
     GLobalEventsManager,
+    ModalService,
     AuthGuard,
     SuperUserGuard
   ],

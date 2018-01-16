@@ -19,7 +19,7 @@ export class UserService {
     }
 
     create(user:User) {
-        return this.api.post<User>('/users', User);
+        return this.api.post<User>('/users', user);
     }
 
     update(user:User) {

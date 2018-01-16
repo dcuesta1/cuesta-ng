@@ -1,0 +1,67 @@
+.customersTable tr {
+    cursor: pointer;   
+
+    &:hover {
+        background: #bbdefb;
+    }
+}
+
+.customerPane_header {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.454;
+    padding-bottom: 7px;
+    text-align: center
+}
+
+.customerPane_main-row {
+    padding: 28px 24px;
+    border: 1px solid #d6d7d8;   
+}
+
+.customerPane_main-header-section {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.customerPane_main-header{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.333;
+}
+
+#customerPanePanel table tr th{
+    width: 120px;
+    color: #5c6063;
+    font-weight: 400;
+    text-align: left;
+}
+
+#customerPanePanel table tr th,
+#customerPanePanel table tr td {
+    padding: 0px;
+    font-size: 14px;
+    line-height: 30px
+}
+
+.inv-table-status-1 {
+    color: #5c6063;
+    font-weight: 500;
+}
+
+.inv-table-status-2 {
+    color: #2996cc;
+    font-weight: 500;
+}
+
+.inv-table-status-4 {
+    color: #38a100;
+    font-weight: 500;
+}
+
+.editCustomerModal div.modal-body{
+    max-width: 500px !important;
+}

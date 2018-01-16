@@ -1,5 +1,6 @@
 import { BaseModel } from "./BaseModel";
 import { Invoice } from "./Invoice";
+import { Customer } from "./Customer";
 
 export class User extends BaseModel{
     static readonly SUPERUSER :number = 1;
@@ -12,6 +13,7 @@ export class User extends BaseModel{
     role: number;
     createdAt: string;
     invoices: Invoice[];
+    customers: Customer[];
     password: string = null;
 
     constructor(model:any = null) {
@@ -22,6 +24,14 @@ export class User extends BaseModel{
             for(let invoice of this.invoices) {
                 this.invoices[i] = new Invoice(invoice);
                 i++;
+            }
+        }
+
+        if(this.customers) {
+            var j = 0;
+            for(let customer of this.customers) {
+                this.customers[j] = new Customer(customer);
+                j++;
             }
         }
     }

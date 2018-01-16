@@ -17,4 +17,15 @@ export let CustomValidators = {
         }
         return { nomatch: true };
     },
+
+    default: (value: string) => {
+        return (control: AbstractControl) => {
+          if(control.value == value){
+            return {
+               default: {valid: false}
+            };
+          }
+          return null;
+        };
+    }
 }

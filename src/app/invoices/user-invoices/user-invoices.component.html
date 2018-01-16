@@ -3,12 +3,14 @@
   <div class="title-header title-header--nav-right">
     <div class="row" style="width:100%">
       <div class="col-lg-8 title-header_title title-header--nav-right_title">Invoices</div>
-      <div  class="col-lg-4 title-header_navigation">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link" [routerLinkActive]="['active']" routerLink="/{{currentUser.username}}/invoices">Invoices</a>
-          </li>
-        </ul>
+        <div  class="col-lg-4 title-header_navigation">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" 
+                [routerLinkActive]="['active']" 
+                routerLink="/{{currentUser.username}}/invoices">Invoices</a>
+            </li>
+          </ul>
       </div>
     </div>  
   </div>

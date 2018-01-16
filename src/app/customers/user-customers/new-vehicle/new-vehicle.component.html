@@ -1,0 +1,59 @@
+<div class="editCustomerModal">
+    <div class="editCustomerModal-header">New Vehicle</div>
+    <form [formGroup]="newVehicleForm">
+      <div class="form-group row">
+          <label for="make" class="col-sm-3 col-form-label">Make</label>
+          <div class="col-sm-9">
+          <input list="makes" type="text" class="form-control" id="make" 
+              placeholder="Toyota"
+              formControlName="make">
+              <datalist id="makes">
+                <option *ngFor="let make of makeModels" value="{{make.title}}">
+              </datalist>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="model" class="col-sm-3 col-form-label">model</label>
+          <div class="col-sm-9">
+          <input list="models" type="text" class="form-control" id="model" 
+              placeholder="Camry"
+              formControlName="model">
+           <datalist id="models">
+                <option *ngFor="let model of models" value="{{model}}">
+           </datalist>  
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="year" class="col-sm-3 col-form-label">year</label>
+          <div class="col-sm-9">
+            <input list="years" type="text" class="form-control" id="year" 
+              placeholder="year"
+              formControlName="year">
+            <datalist id="years">
+                <option *ngFor="let year of years" value="{{year}}">
+            </datalist>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="number" class="col-sm-3 col-form-label">Vin#</label>
+        <div class="col-sm-9">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" 
+              placeholder="1B7GG2AN9YS629756" 
+              formControlName="number">
+            <div class="input-group-append">
+              <button (click)="searchNumber()" class="btn btn-outline-secondary" type="button"><Span class="fa fa-search"></Span></button>
+            </div>
+          </div>
+        </div>  
+      </div>
+    </form>
+    <div class="modal-actions">
+        <button class="btn btn-outline-danger left" (click)="closeModal();">Cancel</button>
+        <button 
+            class="btn btn-primary right" 
+            (click)="submit()"
+            type="submit"
+            [disabled]="newVehicleForm.invalid || (newVehicleForm.valid && newVehicleForm.pristine)">Save</button>
+    </div>
+</div>

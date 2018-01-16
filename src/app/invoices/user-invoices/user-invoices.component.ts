@@ -23,7 +23,6 @@ export class UserInvoicesComponent implements OnInit {
   public estimates: number = 0;
 
   public invoicePane: boolean = false;
-
   public selectedInvoice: Invoice;
 
   constructor(
